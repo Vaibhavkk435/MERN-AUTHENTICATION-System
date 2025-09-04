@@ -1,0 +1,38 @@
+{
+  "name": "mern-auth-app",
+  "version": "1.0.0",
+  "description": "MERN Authentication App with Email Verification",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && nodemon server.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build && npm run move-build",
+    "move-build": "xcopy \"client\\build\\*\" \"server\\public\\\" /E /H /C /I /Y",
+    "start": "cd server && node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "authentication",
+    "email-verification",
+    "react",
+    "express",
+    "mongodb",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "sib-api-v3-sdk": "^8.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.1"
+  }
+}
