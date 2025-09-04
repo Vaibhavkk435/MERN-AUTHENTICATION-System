@@ -8,10 +8,11 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd server && nodemon server.js",
     "client": "cd client && npm start",
-    "build": "cd client && npm run build && npm run move-build",
-    "move-build": "xcopy \"client\\build\\*\" \"server\\public\\\" /E /H /C /I /Y",
-    "start": "cd server && node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build && npm run move-build",
+    "move-build": "xcopy \"client\\build\\*\" \"server\\public\\\" /E /H /C /I /Y 2>nul || cp -r client/build/* server/public/",
+    "start": "cd server && npm install && node server.js",
+    "postinstall": "cd server && npm install && cd ../client && npm install",
+    "heroku-postbuild": "npm run postinstall && npm run build"
   },
   "keywords": [
     "mern",
